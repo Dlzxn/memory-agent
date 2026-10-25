@@ -1,15 +1,17 @@
 from dotenv import load_dotenv
-from agent.agent_class import Agent
-from func_call.functions import get_weather
-from func_call.memory_func import MEMORY_TOOLS
-from agent.dialog import Dialog
+load_dotenv()
+
+
+from src.agent.agent_class import Agent
+from src.func_call.functions import get_weather
+from src.func_call.memory_func import MEMORY_TOOLS
+from src.agent.dialog import Dialog
 
 import os
 
 
 
 if __name__ == "__main__":
-    load_dotenv()
     key = os.getenv('Authorization_Key')
     agent = Agent(
         key=key,

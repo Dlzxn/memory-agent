@@ -8,16 +8,6 @@ DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "data.json"
 store = JsonStore(DATA_PATH)
 
 
-@tool(parse_docstring=True)
-def get_weather(city: str) -> dict:
-    """Возвращает текущую погоду в городе. Вызывай, когда спрашивают про погоду.
-
-    Args:
-        city: Название города, например 'Москва'.
-    """
-    return {"city": city, "temperature": 7, "conditions": "облачно"}
-
-
 def _normalize(text: str) -> str:
     return " ".join(text.lower().strip().split())
 
@@ -35,10 +25,10 @@ def _short(fact: dict) -> dict:
 
 @tool(parse_docstring=True)
 def save_fact(
-        subject: str,
-        fact: str,
-        source: Literal["stated", "inferred"],
-        priority: Literal[1, 2, 3],
+    subject: str,
+    fact: str,
+    source: Literal["stated", "inferred"],
+    priority: int,
 ) -> dict:
     """Сохраняет устойчивый факт в долгую память. Вызывай, когда пользователь сообщает что-то о себе или о других людях. Не вызывай для приветствий, болтовни и разовых событий.
 
